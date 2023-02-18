@@ -13,5 +13,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: $GITHUB_ACTION_PATH/entrypoint.sh
+    - run: $GITHUB_ACTION_PATH/run.sh
       shell: bash
