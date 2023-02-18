@@ -1,4 +1,4 @@
-name: Initialize Repo
+name: Initialize
 
 on:
   create:
@@ -14,7 +14,7 @@ jobs:
       - uses: octokit/request-action@v2.x
         id: repo-info
         with:
-          route: GET /repos/${{ inputs.repository }}
+          route: GET /repos/${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
