@@ -27,10 +27,10 @@ jobs:
           echo "# ${{ github.event.repository.name }}" > README.md
           
           if [[ ${{ fromJson(steps.repo-info.outputs.data).template_repository.owner.login }} != ${{ github.repository_owner }} ]]; then
-            rm .github/FUNDING.yml
+            rm -f .github/FUNDING.yml
           fi
           
-          rm .github/workflows/initialize.yml
+          rm -f .github/workflows/initialize.yml
           
       - name: Commit Initialization
         uses: stefanzweifel/git-auto-commit-action@v4
