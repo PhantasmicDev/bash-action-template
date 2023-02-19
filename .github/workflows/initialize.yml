@@ -27,8 +27,6 @@ jobs:
           echo "# ${{ github.event.repository.name }}" > README.md
           rm -f LICENSE
           
-          echo ${{ github.triggering_actor }}
-          
           if [[ ${{ fromJson(steps.repo-info.outputs.data).template_repository.owner.login }} != ${{ github.repository_owner }} ]]; then
             rm -f .github/FUNDING.yml
           fi
