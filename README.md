@@ -11,6 +11,7 @@ There is some metadata in the `action.yml` file you'll want to change when your 
 The GitHub workflow `Initialize` runs after creating a new repository from this template. The workflow will:
 - Clear README.md file.
   - Leaves only a heading with your new repo's name.
+- The LICENSE file is deleted
 - If the new repo's owner is not the template's owner, the FUNDING.yml file is deleted.
   - If you fork this template and create new actions from it, the FUNDING.yml file is preserved.
 - The workflow's initialize.yml file is deleted.
