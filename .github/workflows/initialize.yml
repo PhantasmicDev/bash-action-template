@@ -24,14 +24,27 @@ jobs:
         
       - name: Initialize
         run: | 
-          echo "# ${{ github.event.repository.name }}" > README.md
+          ACTION_NAME=$(echo "${{ github.event.repository.name }}" | sed 's/\b\([a-z]\)/\U\1/g; s/-/ /g')
+          
+          # Clear README.md and set title to new action name
+          echo "# $ACTION_NAME" > README.md
+          
+          # Remove license
           rm -f LICENSE
+          
+          # Set the name entry
+          sed -i 's/^name:.*/name: \"$ACTION_NAME\"/' action.yml
           
           TEMPLATE_OWNER=${{ fromJson(steps.repo-info.outputs.data).template_repository.owner.login }}
           if [[ "$TEMPLATE_OWNER" != "${{ github.repository_owner }}" && "$TEMPLATE_OWNER" != "${{ github.triggering_actor }}" ]]; then
             rm -f .github/FUNDING.yml
           fi
           
+          # Set the description entry
+          DESCRIPTION=${{ fromJson(steps.repo-info.outputs.data).description }}
+          sed -i 's/^description:.*/description: \"$DESCRIPTION\"/' action.yml
+          
+          # Delete initialization workflow file
           rm -f .github/workflows/initialize.yml
           
       - name: Commit Initialization
