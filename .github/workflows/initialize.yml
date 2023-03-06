@@ -41,8 +41,8 @@ jobs:
           fi
           
           # Set the description entry
-          DESCRIPTION=${{ fromJson(steps.repo-info.outputs.data).description }}
-          echo "$DESCRIPTION"
+          DESCRIPTION="${{ fromJson(steps.repo-info.outputs.data).description }}"
+          echo $DESCRIPTION
           
           # Delete initialization workflow file
           rm -f .github/workflows/initialize.yml
