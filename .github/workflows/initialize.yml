@@ -42,8 +42,7 @@ jobs:
           
           # Set the description entry
           DESCRIPTION=${{ fromJson(steps.repo-info.outputs.data).description }}
-          DESCRIPTION=$(echo "$DESCRIPTION" | sed 's/[\/&]/\\&/g')
-          sed -i "s/^description:.*/description: \"$DESCRIPTION\"/" action.yml
+          sed -i "/^description:/!s/^name:.*/&\ndescription: \"$DESCRIPTION\"/" action.yml
           
           # Delete initialization workflow file
           rm -f .github/workflows/initialize.yml
