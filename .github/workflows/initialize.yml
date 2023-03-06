@@ -33,7 +33,7 @@ jobs:
           rm -f LICENSE
           
           # Set the name entry
-          sed -i "s/^name:.*/name: \"${ACTION_NAME//\"/\\\"}\"/" action.yml
+          sed -i "s|^name:.*|name: \"$ACTION_NAME\"|" action.yml
           
           TEMPLATE_OWNER=${{ fromJson(steps.repo-info.outputs.data).template_repository.owner.login }}
           if [[ "$TEMPLATE_OWNER" != "${{ github.repository_owner }}" && "$TEMPLATE_OWNER" != "${{ github.triggering_actor }}" ]]; then
@@ -42,7 +42,7 @@ jobs:
           
           # Set the description entry
           DESCRIPTION=${{ fromJson(steps.repo-info.outputs.data).description }}
-          sed -i "s/^description:.*/description: \"${DESCRIPTION//\"/\\\"}\"/" action.yml
+          sed -i "s|^description:.*|description: \"$DESCRIPTION\"|" action.yml
           
           # Delete initialization workflow file
           rm -f .github/workflows/initialize.yml
