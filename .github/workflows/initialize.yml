@@ -35,6 +35,9 @@ jobs:
           # Set the name entry
           sed -i "s/^name:.*/name: \"$ACTION_NAME\"/" action.yml
           
+          # Set the author entry
+          sed -i "s/^author:.*/author: \"${{ github.actor }}\"/" action.yml
+          
           # Set the description entry
           DESCRIPTION="${{ fromJson(steps.repo-info.outputs.data).description }}"
           sed -i "s/^description:.*/description: \"$DESCRIPTION\"/" action.yml
